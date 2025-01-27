@@ -1,0 +1,25 @@
+using System;
+
+class TorresDeHanoi
+{
+    static void ResolverHanoi(int discos, string origen, string auxiliar, string destino)
+    {
+        if (discos == 1)
+        {
+            Console.WriteLine($"Mover disco 1 de {origen} a {destino}");
+        }
+        else
+        {
+            ResolverHanoi(discos - 1, origen, destino, auxiliar);
+            Console.WriteLine($"Mover disco {discos} de {origen} a {destino}");
+            ResolverHanoi(discos - 1, auxiliar, origen, destino);
+        }
+    }
+
+    static void Main()
+    {
+        Console.WriteLine("Ingrese el número de discos:");
+        int discos = int.Parse(Console.ReadLine());
+        ResolverHanoi(discos, "Origen", "Auxiliar", "Destino");
+    }
+}
