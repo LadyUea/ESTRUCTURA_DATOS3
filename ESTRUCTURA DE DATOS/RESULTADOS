@@ -1,0 +1,9 @@
+Se ha formado la cola de espera con 50 personas.
+Se han asignado los asientos a las primeras 30 personas.
+
+--- Reporte de Asignación de Asientos ---
+Asiento ocupado por: Persona 1 (ID: 1)
+Asiento ocupado por: Persona 2 (ID: 2)
+Asiento ocupado por: Persona 3 (ID: 3)
+...
+Asiento ocupado por: Persona 30 (ID: 30)
