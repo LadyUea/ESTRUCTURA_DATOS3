@@ -1,0 +1,98 @@
+class Persona
+{
+    public string Nombre { get; set; }
+    public int Id { get; set; }
+
+    public Persona(int id, string nombre)
+    {
+        Id = id;
+        Nombre = nombre;
+    }
+}
+using System;
+using System.Collections.Generic;
+
+class ColaEspera
+{
+    private Queue<Persona> cola = new Queue<Persona>();
+
+    public void Encolar(Persona persona)
+    {
+        cola.Enqueue(persona);
+    }
+
+    public Persona Desencolar()
+    {
+        return cola.Count > 0 ? cola.Dequeue() : null;
+    }
+
+    public List<Persona> ObtenerCola()
+    {
+        return new List<Persona>(cola);
+    }
+}
+class Atraccion
+{
+    private List<Persona> asientos = new List<Persona>();
+    private const int CAPACIDAD = 30;
+
+    public void AsignarAsientos(ColaEspera cola)
+    {
+        while (asientos.Count < CAPACIDAD && cola.ObtenerCola().Count > 0)
+        {
+            Persona persona = cola.Desencolar();
+            asientos.Add(persona);
+        }
+    }
+
+    public void LiberarAsientos()
+    {
+        asientos.Clear();
+    }
+
+    public List<Persona> ObtenerAsientos()
+    {
+        return new List<Persona>(asientos);
+    }
+}
+using System;
+
+class SistemaDeGestion
+{
+    public void EjecutarSimulacion()
+    {
+        ColaEspera cola = new ColaEspera();
+        Atraccion atraccion = new Atraccion();
+
+        // Simulación de llegada de personas
+        for (int i = 1; i <= 50; i++)
+        {
+            cola.Encolar(new Persona(i, "Persona " + i));
+        }
+
+        Console.WriteLine("Se ha formado la cola de espera con 50 personas.");
+        
+        // Asignación de los primeros 30 asientos
+        atraccion.AsignarAsientos(cola);
+        Console.WriteLine("Se han asignado los asientos a las primeras 30 personas.");
+        
+        GenerarReporte(atraccion);
+    }
+
+    public void GenerarReporte(Atraccion atraccion)
+    {
+        Console.WriteLine("\n--- Reporte de Asignación de Asientos ---");
+        foreach (var persona in atraccion.ObtenerAsientos())
+        {
+            Console.WriteLine($"Asiento ocupado por: {persona.Nombre} (ID: {persona.Id})");
+        }
+    }
+}
+class Program
+{
+    static void Main(string[] args)
+    {
+        SistemaDeGestion sistema = new SistemaDeGestion();
+        sistema.EjecutarSimulacion();
+    }
+}

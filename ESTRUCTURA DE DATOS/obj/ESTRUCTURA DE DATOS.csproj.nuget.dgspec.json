@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lady_\\PROYECTOS\\ESTRUCTURA DE DATOS\\ESTRUCTURA DE DATOS\\ESTRUCTURA DE DATOS.csproj": {}
+    "c:\\Users\\lady_\\PROYECTOS\\ESTRUCTURA DE DATOS\\ESTRUCTURA DE DATOS\\ESTRUCTURA DE DATOS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lady_\\PROYECTOS\\ESTRUCTURA DE DATOS\\ESTRUCTURA DE DATOS\\ESTRUCTURA DE DATOS.csproj": {
+    "c:\\Users\\lady_\\PROYECTOS\\ESTRUCTURA DE DATOS\\ESTRUCTURA DE DATOS\\ESTRUCTURA DE DATOS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lady_\\PROYECTOS\\ESTRUCTURA DE DATOS\\ESTRUCTURA DE DATOS\\ESTRUCTURA DE DATOS.csproj",
+        "projectUniqueName": "c:\\Users\\lady_\\PROYECTOS\\ESTRUCTURA DE DATOS\\ESTRUCTURA DE DATOS\\ESTRUCTURA DE DATOS.csproj",
         "projectName": "ESTRUCTURA DE DATOS",
-        "projectPath": "C:\\Users\\lady_\\PROYECTOS\\ESTRUCTURA DE DATOS\\ESTRUCTURA DE DATOS\\ESTRUCTURA DE DATOS.csproj",
+        "projectPath": "c:\\Users\\lady_\\PROYECTOS\\ESTRUCTURA DE DATOS\\ESTRUCTURA DE DATOS\\ESTRUCTURA DE DATOS.csproj",
         "packagesPath": "C:\\Users\\lady_\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lady_\\PROYECTOS\\ESTRUCTURA DE DATOS\\ESTRUCTURA DE DATOS\\obj\\",
+        "outputPath": "c:\\Users\\lady_\\PROYECTOS\\ESTRUCTURA DE DATOS\\ESTRUCTURA DE DATOS\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\lady_\\AppData\\Roaming\\NuGet\\NuGet.Config"
