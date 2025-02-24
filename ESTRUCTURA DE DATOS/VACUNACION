@@ -1,0 +1,67 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+
+class Program
+{
+    static void Main()
+    {
+        // Generación de ciudadanos
+        HashSet<string> ciudadanos = new HashSet<string>();
+        for (int i = 1; i <= 500; i++)
+        {
+            ciudadanos.Add($"Ciudadano {i}");
+        }
+
+        // Conjuntos de vacunados
+        HashSet<string> vacunadosPfizer = new HashSet<string>(GenerarVacunados(75));
+        HashSet<string> vacunadosAstraZeneca = new HashSet<string>(GenerarVacunados(75));
+        HashSet<string> vacunadosAmbos = new HashSet<string>(vacunadosPfizer.Intersect(vacunadosAstraZeneca));
+
+        // Filtrar los datos
+        HashSet<string> vacunadosSoloPfizer = new HashSet<string>(vacunadosPfizer.Except(vacunadosAmbos));
+        HashSet<string> vacunadosSoloAstraZeneca = new HashSet<string>(vacunadosAstraZeneca.Except(vacunadosAmbos));
+        HashSet<string> vacunadosDosDosis = new HashSet<string>(vacunadosAmbos);
+        HashSet<string> noVacunados = new HashSet<string>(ciudadanos.Except(vacunadosPfizer.Union(vacunadosAstraZeneca)));
+
+        // Generar reporte
+        GenerarReportePDF(noVacunados, vacunadosDosDosis, vacunadosSoloPfizer, vacunadosSoloAstraZeneca);
+    }
+
+    static List<string> GenerarVacunados(int cantidad)
+    {
+        List<string> vacunados = new List<string>();
+        Random rnd = new Random();
+        for (int i = 0; i < cantidad; i++)
+        {
+            vacunados.Add($"Ciudadano {rnd.Next(1, 501)}");
+        }
+        return vacunados;
+    }
+
+    static void GenerarReportePDF(HashSet<string> noVacunados, HashSet<string> vacunadosDosDosis,
+                                  HashSet<string> vacunadosSoloPfizer, HashSet<string> vacunadosSoloAstraZeneca)
+    {
+        Document doc = new Document();
+        PdfWriter.GetInstance(doc, new FileStream("ReporteVacunacion.pdf", FileMode.Create));
+        doc.Open();
+
+        doc.Add(new Paragraph("Reporte de Vacunación COVID"));
+        doc.Add(new Paragraph("\nListado de ciudadanos no vacunados:"));
+        foreach (var c in noVacunados) doc.Add(new Paragraph(c));
+        
+        doc.Add(new Paragraph("\nListado de ciudadanos con dos vacunas:"));
+        foreach (var c in vacunadosDosDosis) doc.Add(new Paragraph(c));
+        
+        doc.Add(new Paragraph("\nListado de ciudadanos vacunados solo con Pfizer:"));
+        foreach (var c in vacunadosSoloPfizer) doc.Add(new Paragraph(c));
+        
+        doc.Add(new Paragraph("\nListado de ciudadanos vacunados solo con AstraZeneca:"));
+        foreach (var c in vacunadosSoloAstraZeneca) doc.Add(new Paragraph(c));
+        
+        doc.Close();
+    }
+}
